@@ -76,7 +76,7 @@ public:
   /**
    * Whether the pixel data should be kept in TextureManager, returned with pixelBuffer or uploaded for rendering
    */
-  enum StorageType
+  enum class StorageType: unsigned int
   {
     KEEP_PIXEL_BUFFER,
     RETURN_PIXEL_BUFFER,
@@ -86,7 +86,7 @@ public:
   /**
    * Whether the texture should be loaded synchronously or asynchronously.
    */
-  enum LoadType
+  enum class LoadType: unsigned int
   {
     LOAD_ASYNCHRONOUSLY,
     LOAD_SYNCHRONOUSLY
@@ -95,7 +95,7 @@ public:
   /**
    * @brief The LoadState Enumeration represents the current state of a particular Texture's life-cycle.
    */
-  enum LoadState
+  enum class LoadState: unsigned int
   {
     NOT_STARTED,     ///< Default
     LOADING,         ///< Loading has been started, but not finished.
@@ -530,10 +530,10 @@ private:
       hash( hash ),
       scaleFactor( scaleFactor ),
       referenceCount( 1u ),
-      loadState( NOT_STARTED ),
+      loadState( LoadState::NOT_STARTED ),
       fittingMode( fittingMode ),
       samplingMode( samplingMode ),
-      storageType( UPLOAD_TO_TEXTURE ),
+      storageType( StorageType::UPLOAD_TO_TEXTURE ),
       animatedImageLoading( animatedImageLoading ),
       frameIndex( frameIndex ),
       loadSynchronously( loadSynchronously ),
