@@ -67,7 +67,7 @@ public:
   /**
    * Whether the texture should be atlased or uploaded into it's own GPU texture
    */
-  enum UseAtlas
+  enum class UseAtlas: unsigned int
   {
     NO_ATLAS,
     USE_ATLAS
@@ -76,7 +76,7 @@ public:
   /**
    * Whether the pixel data should be kept in TextureManager, returned with pixelBuffer or uploaded for rendering
    */
-  enum StorageType
+  enum class StorageType: unsigned int
   {
     KEEP_PIXEL_BUFFER,
     RETURN_PIXEL_BUFFER,
@@ -95,7 +95,7 @@ public:
   /**
    * @brief The LoadState Enumeration represents the current state of a particular Texture's life-cycle.
    */
-  enum LoadState
+  enum class LoadState: unsigned int
   {
     NOT_STARTED,     ///< Default
     LOADING,         ///< Loading has been started, but not finished.
@@ -111,7 +111,7 @@ public:
   /**
    * @brief Types of reloading policies
    */
-  enum class ReloadPolicy
+  enum class ReloadPolicy: unsigned int
   {
     CACHED = 0,             ///< Loads cached texture if it exists.
     FORCED                  ///< Forces reloading of texture.
@@ -120,7 +120,7 @@ public:
   /**
    * @brief Whether to multiply alpha into color channels on load
    */
-  enum class MultiplyOnLoad
+  enum class MultiplyOnLoad: unsigned int
   {
     LOAD_WITHOUT_MULTIPLY = 0, ///< Don't modify the image
     MULTIPLY_ON_LOAD           ///< Multiply alpha into color channels on load
@@ -530,10 +530,10 @@ private:
       hash( hash ),
       scaleFactor( scaleFactor ),
       referenceCount( 1u ),
-      loadState( NOT_STARTED ),
+      loadState( LoadState::NOT_STARTED ),
       fittingMode( fittingMode ),
       samplingMode( samplingMode ),
-      storageType( UPLOAD_TO_TEXTURE ),
+      storageType( StorageType::UPLOAD_TO_TEXTURE ),
       animatedImageLoading( animatedImageLoading ),
       frameIndex( frameIndex ),
       loadSynchronously( loadSynchronously ),
